@@ -1,6 +1,8 @@
 programa teste{
-    int a := 2;
+    real a := 2.5;
     int b := 6;
+    char c := 'g';
+
 
     se (a > b){
         a := b;

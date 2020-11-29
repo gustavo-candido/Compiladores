@@ -39,6 +39,7 @@ class  AFD:
             2 : [
                 (3,['r']),
                 (11,list(np.setdiff1d(letra+digito,['r']))),
+                (12, list(np.setdiff1d(printable,letra+digito)))
             ],
             3 : [
                 (4,['o']),
@@ -74,6 +75,7 @@ class  AFD:
             ],
             13 : [
                 (11,list(np.setdiff1d(letra+digito,['n']))),
+                (12, list(np.setdiff1d(printable,letra+digito))),
                 (14,['n']),
             ],
             14 : [
@@ -87,6 +89,7 @@ class  AFD:
             17 : [
                 (18,['e']),
                 (11,list(np.setdiff1d(letra+digito,['e']))),
+                (12,list(np.setdiff1d(printable,letra+digito))),
             ],
             18 : [
                 (19,['a']),
@@ -103,6 +106,7 @@ class  AFD:
             22 : [
                 (23,['h']),
                 (11,list(np.setdiff1d(letra+digito,['h']))),
+                (12,list(np.setdiff1d(printable,letra+digito))),
             ],
             23 : [
                 (24,['a']),
@@ -131,6 +135,7 @@ class  AFD:
             46 : [
                 (47,['e']),
                 (11,list(np.setdiff1d(letra+digito,['e']))),
+                (12,list(np.setdiff1d(printable,letra+digito))),
             ],
             47 : [
                 (49,['n']),
@@ -151,6 +156,7 @@ class  AFD:
             ],
             66 : [
                 (67,['a']),
+                (12,list(np.setdiff1d(printable,letra+digito))),
                 (11,list(np.setdiff1d(letra+digito,['a']))),
             ],
             67 : [
@@ -167,6 +173,7 @@ class  AFD:
             ],
             53 : [
                 (54,['n']),
+                (12,list(np.setdiff1d(printable,letra+digito))),
                 (11,list(np.setdiff1d(letra+digito,['n']))),
             ],
             54 : [

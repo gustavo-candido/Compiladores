@@ -1,0 +1,8 @@
+programa teste{
+    int a := 2;
+    int b := 6;
+
+    se (a > b){
+        a := b;
+    }
+}

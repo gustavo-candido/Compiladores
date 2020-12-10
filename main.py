@@ -1,7 +1,7 @@
 from AFD import AFD
-from Reconhecedor import Reconhecedor
+from AnalisadorSintatico import AnalisadorSintatico
 from Gramatica import Gramatica
 
-# r = Reconhecedor('in.txt')
-g = Gramatica()
+
+a = AnalisadorSintatico()
 

@@ -10,17 +10,17 @@ class Reconhecedor:
         self.read_bytes = 0
         self.AFD = AFD()
         self.identificadores = []
+        self.tokens = []
 
         while self.file.tell() != os.fstat(self.file.fileno()).st_size:
             line = self.line
             column = self.column
             ret = self.search(1,"")
             if ret != '<null>':
-                print("[{}][{}]  =  {}".format(line, column, ret))
+                self.tokens.append(((line,column),ret))
             if '<id,' in ret:
                 if ret[4:-1] not in self.identificadores:
                     self.identificadores.append(ret[4:-1])
-        print('Identificadores: {}'.format(self.identificadores))
        
     
     def search(self, vertex, buffer):

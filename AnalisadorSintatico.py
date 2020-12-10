@@ -19,4 +19,4 @@ class AnalisadorSintatico:
             print('Unexpected {} at {}:{}'.format(tokenId, tokenLine, tokenColumn))
         
     def matchRuleWithToken(rules, token):
-        return rules[0]
+        return None

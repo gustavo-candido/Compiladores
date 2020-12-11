@@ -21,7 +21,8 @@ class Reconhecedor:
             if '<id,' in ret:
                 if ret[4:-1] not in self.identificadores:
                     self.identificadores.append(ret[4:-1])
-       
+        
+        print(self.tokens)
     
     def search(self, vertex, buffer):
         if vertex in self.AFD.finals:

@@ -1,0 +1,83 @@
+[((0, 0), '<{>'), ((0, 1), '<id,a>'), ((0, 4), '<:=>'), ((0, 7), '<cntInt,1>'), ((0, 9), '<;>'), ((0, 10), '<}>')]
+
+RULE >>> [['{', 'D', 'E', '}']]
+PRODUCTION >>> ['{', 'D', 'E', '}'] TOKEN >>> ((0, 0), '<{>')
+[0] = '{'
+[1] = 'D'
+
+RULE >>> [['T', 'L', 'D'], ['eps']]
+PRODUCTION >>> ['T', 'L', 'D'] TOKEN >>> ((0, 1), '<id,a>')
+[0] = 'T'
+PRODUCTION >>> ['eps'] TOKEN >>> ((0, 1), '<id,a>')
+[0] = 'eps'
+out [['T', 'L', 'D'], ['eps']]
+[2] = 'E'
+
+RULE >>> [["E'", 'E'], ['eps']]
+PRODUCTION >>> ["E'", 'E'] TOKEN >>> ((0, 1), '<id,a>')
+[0] = 'E''
+
+RULE >>> [['X'], ['I'], ['Y'], ['Q'], ['W'], ['G']]
+PRODUCTION >>> ['X'] TOKEN >>> ((0, 1), '<id,a>')
+[0] = 'X'
+
+RULE >>> [['H', "X'"]]
+PRODUCTION >>> ['H', "X'"] TOKEN >>> ((0, 1), '<id,a>')
+[0] = 'H'
+
+RULE >>> [['M', "H'"]]
+PRODUCTION >>> ['M', "H'"] TOKEN >>> ((0, 1), '<id,a>')
+[0] = 'M'
+
+RULE >>> [['(', 'X', ')'], ['K']]
+PRODUCTION >>> ['(', 'X', ')'] TOKEN >>> ((0, 1), '<id,a>')
+[0] = '('
+PRODUCTION >>> ['K'] TOKEN >>> ((0, 1), '<id,a>')
+[0] = 'K'
+
+RULE >>> [['N'], ['F'], ['J'], ["C'"]]
+PRODUCTION >>> ['N'] TOKEN >>> ((0, 1), '<id,a>')
+[0] = 'N'
+
+RULE >>> [['id']]
+PRODUCTION >>> ['id'] TOKEN >>> ((0, 1), '<id,a>')
+[0] = 'id'
+out [['id']]
+out [['N'], ['F'], ['J'], ["C'"]]
+out [['(', 'X', ')'], ['K']]
+[1] = 'H''
+
+RULE >>> [['*', 'M', "H'"], ['/', 'M', "H'"], ['eps']]
+PRODUCTION >>> ['*', 'M', "H'"] TOKEN >>> ((0, 4), '<:=>')
+[0] = '*'
+PRODUCTION >>> ['/', 'M', "H'"] TOKEN >>> ((0, 4), '<:=>')
+[0] = '/'
+PRODUCTION >>> ['eps'] TOKEN >>> ((0, 4), '<:=>')
+[0] = 'eps'
+out [['*', 'M', "H'"], ['/', 'M', "H'"], ['eps']]
+out [['M', "H'"]]
+[1] = 'X''
+
+RULE >>> [['+', 'H', "X'"], ['-', 'H', "X'"], ['eps']]
+PRODUCTION >>> ['+', 'H', "X'"] TOKEN >>> ((0, 4), '<:=>')
+[0] = '+'
+PRODUCTION >>> ['-', 'H', "X'"] TOKEN >>> ((0, 4), '<:=>')
+[0] = '-'
+PRODUCTION >>> ['eps'] TOKEN >>> ((0, 4), '<:=>')
+[0] = 'eps'
+out [['+', 'H', "X'"], ['-', 'H', "X'"], ['eps']]
+out [['H', "X'"]]
+out [['X'], ['I'], ['Y'], ['Q'], ['W'], ['G']]
+[1] = 'E'
+
+RULE >>> [["E'", 'E'], ['eps']]
+PRODUCTION >>> ["E'", 'E'] TOKEN >>> ((0, 4), '<:=>')
+[0] = 'E''
+PRODUCTION >>> ['eps'] TOKEN >>> ((0, 4), '<:=>')
+[0] = 'eps'
+out [["E'", 'E'], ['eps']]
+out [["E'", 'E'], ['eps']]
+[3] = '}'
+out [['{', 'D', 'E', '}']]
+reconhecido: False
+((0, 0), '<{>')((0, 1), '<id,a>')

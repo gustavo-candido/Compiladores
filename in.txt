@@ -1,1 +1,1 @@
-programa teste{}
+{a := 1;}

@@ -1,1 +1,13 @@
-1 + 2
+programa teste {
+    int h, n;
+    real x, g;
+    char p, poopp;
+    h := 2 - 5;
+    n := 3;
+    x := h * n + 2 / 5 * 6;
+    se (a > b) entao {} senao {}
+    n := 'c'; [*teste comentario*]
+    faca {} enquanto (a <= 'c');
+    enquanto (a < b) {b := b+1;}
+    1 + -5 + 6
+}

@@ -6,27 +6,44 @@ class AnalisadorSintatico:
         self.reconhecedor = Reconhecedor('in.txt')
         self.gramatica = Gramatica()
         self.test = ''
-        print('reconhecido: {}'.format(self.run(self.gramatica.gram['X'])))
-        print(self.test)
-        
-    def run(self, rule):
+        path = []
+
+        ans = self.startRun(self.gramatica.gram['P'], path)
+        print('reconhecido: {}'.format(ans))
+
+        if ans:
+            print("Caminho: {}".format(path))
+        # print(self.test)
+        # print(self.reconhecedor.tokens)
+    
+    def startRun(self, rule, path):
+        res = self.run(rule, path)
+        return res and not self.reconhecedor.tokens
+
+    def run(self, rule, path):
+
         popped = []
         tokens = self.reconhecedor.tokens
-        # if rules == None:
-        #     print('Unexpected {} at {}:{}'.format(tokenId, tokenLine, tokenColumn))
-        #     return
-        print("\nRULE >>> {}".format(rule))
+        path.append(rule)
+        
+
         accepted = True
         for production in rule:
+            # print(self.reconhecedor.tokens)
             accepted = True
-            print("PRODUCTION >>> {} TOKEN >>> {}".format(production, tokens[0]))
             for symbol in range(len(production)):
-                print("[{}] = '{}'".format(symbol, production[symbol]))
-                tokenPosition, tokenId = tokens[0]
-                tokenLine, tokenColumn = tokenPosition
-                tokenName = tokenId[1:-1]
-                tokenList = tokenName.split(',')
-                token = tokenList[0]
+                # print("[{}] = '{}'".format(symbol, production[symbol]))
+                if tokens != []:
+                    tokenPosition, tokenId = tokens[0]
+                    tokenLine, tokenColumn = tokenPosition
+                    tokenName = tokenId[1:-1]
+                    if tokenName == ',':
+                        token = ','
+                    else:
+                        tokenList = tokenName.split(',')
+                        token = tokenList[0]
+                else:
+                    token = 'null'
 
                 if self.isTerminal(production[symbol]):
                     if production[symbol] != 'eps' and production[symbol] != token:
@@ -39,7 +56,7 @@ class AnalisadorSintatico:
                     
                 else: # Não terminal
                     if ['eps'] in self.gramatica.gram[production[symbol]] or self.tokenInFirst(token,production[symbol]):
-                        if(not self.run(self.gramatica.gram[production[symbol]])):
+                        if(not self.run(self.gramatica.gram[production[symbol]], path)):
                             accepted = False
                             break
                     else:
@@ -51,14 +68,9 @@ class AnalisadorSintatico:
         
         if not accepted:
             self.reconhecedor.tokens = popped + self.reconhecedor.tokens
-        print("out {}".format(rule))
-        return accepted
-                
+            path.pop()
 
-    # def findRules(self, token):
-    #    if token not in self.gramatica.firsts:
-    #         return None
-    #     return self.gramatica.firsts[token]
+        return accepted
 
     def isTerminal(self, symbol):
         return symbol not in self.gramatica.gram

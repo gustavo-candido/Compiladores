@@ -12,15 +12,19 @@ class Reconhecedor:
         self.identificadores = []
         self.tokens = []
 
-        while self.file.tell() != os.fstat(self.file.fileno()).st_size:
-            line = self.line
-            column = self.column
-            ret = self.search(1,"")
-            if ret != '<null>':
-                self.tokens.append(((line,column),ret))
-            if '<id,' in ret:
-                if ret[4:-1] not in self.identificadores:
-                    self.identificadores.append(ret[4:-1])
+        try:
+            while self.file.tell() != os.fstat(self.file.fileno()).st_size:
+                line = self.line
+                column = self.column
+                ret = self.search(1,"")
+                if ret != '<null>':
+                    self.tokens.append(((line,column),ret))
+                if '<id,' in ret:
+                    if ret[4:-1] not in self.identificadores:
+                        self.identificadores.append(ret[4:-1])
+
+        except: 
+            self.tokens = [((0, 0), '<null>')]
         
     
     def search(self, vertex, buffer):
@@ -30,8 +34,8 @@ class Reconhecedor:
             if vertex in self.AFD.retreat:
                 self.read_bytes-=1
                 self.file.seek(self.read_bytes)
-
                 buffer = buffer[0:-1]
+
             if len(ret) == 1:
                 return ('<{}>'.format(ret[0]))
 

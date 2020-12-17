@@ -1,24 +1,6 @@
 import string
 
 class Gramatica:
-    def isNumber(self,x):
-        if not x.isnumeric():
-            return False
-        x1 = int(x)
-        return -32767 <= x1 and 32767 >= x1
-            
-    def isLetter(self, x):
-        return x.isalpha()
-
-    def AllExceptComment(self, x, y = None):
-        if not y:
-            return True
-
-        if x == '*' and y and y == ']':
-            return False
-
-        return True
-
     def __init__(self):
         letra = list(string.ascii_letters)
         self.gram = {
@@ -94,6 +76,7 @@ class Gramatica:
             '': [],
             "'": [],
 
+            "null": [],
             # '\-32768-32767': ['E', "E'", 'X', 'H', 'M', 'K', 'J', "I'"],
             # 'all': ['Z', "Z'", 'S'],
             # 'a-zA-Z': ['E', 'N', "N'", "E'", 'X', 'H', 'M', 'K',  'C', 'L', "I'", 'Y'],

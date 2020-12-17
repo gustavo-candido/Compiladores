@@ -4,8 +4,8 @@ from Reconhecedor import Reconhecedor
 class AnalisadorSintatico:
     def __init__ (self):
         self.reconhecedor = Reconhecedor('in.txt')
+
         self.gramatica = Gramatica()
-        self.test = ''
         path = []
 
         ans = self.startRun(self.gramatica.gram['P'], path)
@@ -13,15 +13,13 @@ class AnalisadorSintatico:
 
         if ans:
             print("Caminho: {}".format(path))
-        # print(self.test)
-        # print(self.reconhecedor.tokens)
     
     def startRun(self, rule, path):
         res = self.run(rule, path)
         return res and not self.reconhecedor.tokens
 
     def run(self, rule, path):
-
+        
         popped = []
         tokens = self.reconhecedor.tokens
         path.append(rule)
@@ -51,7 +49,6 @@ class AnalisadorSintatico:
                         break
                     elif production[symbol] != 'eps':
                         pop = self.reconhecedor.tokens.pop(0)
-                        self.test += str(pop)
                         popped.append(pop)
                     
                 else: # Não terminal
